@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
-import useInput from '../hooks/useInput';
+import { useState } from 'react';
 
 function ThreadInput({addThread}){
-    const [title, setTitle] = useInput('');
-    const [category, setCategory] = useInput('');
-    const [body, setBody] = useInput('');    
+    const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
+    const [body, setBody] = useState('');    
     function handleSubmit(e) {
         e.preventDefault();
-        addThread({ title, category, body });       
+        addThread({ title, category, body });
+        setTitle('');
+        setCategory('');
+        setBody('');
         
     }
     return(
@@ -18,19 +21,19 @@ function ThreadInput({addThread}){
         <h1 className="modal-title fs-5" id="exampleModalLabel">Add New Threads</h1>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form action="" onSubmit={handleSubmit}>
       <div className="modal-body">
         <div className="mb-3">
             <label htmlFor="tittle" className="form-label">Tittle</label>
-            <input type="text" value={title} onChange={setTitle} className="form-control" id="tittle" placeholder='Tittle'/>
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="form-control" id="tittle" placeholder='Tittle'/>
         </div>
         <div className="mb-3">
             <label htmlFor="tittle" className="form-label">Category</label>
-            <input type="text" value={category} onChange={setCategory} className="form-control" id="tittle" placeholder='Category'/>
+            <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} className="form-control" id="tittle" placeholder='Category'/>
         </div>
         <div className="mb-3">
             <label htmlFor="bodyText" className="form-label">Thread</label>
-            <textarea className="form-control" onChange={setBody} value={body} id="bodyText" rows="3" placeholder="Thread"></textarea>
+            <textarea className="form-control" onChange={(e) => setBody(e.target.value)}value={body} id="bodyText" rows="3" placeholder="Thread"></textarea>
         </div>         
       </div>
       <div className="modal-footer">

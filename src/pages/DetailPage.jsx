@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import Header from "../components/Header";
 import ThreadDetail from "../components/ThreadDetail";
 import { useSelector,useDispatch } from 'react-redux';
@@ -11,7 +11,7 @@ function DetailPage() {
     const dispatch = useDispatch(); 
     const threadDetail = useSelector((states) => states.threadDetail);
     const authUser = useSelector((states) => states.authUser);
-   
+ 
  
     useEffect(() => {
         dispatch(asyncReceiveThreadDetail(id));
@@ -36,7 +36,7 @@ function DetailPage() {
     }
     function onAddComment(content){
       dispatch(asyncAddCommentOnThread({content, commentTo: id}));
-
+      dispatch(asyncReceiveComments(id));   
     }
     
     return(
