@@ -3,7 +3,7 @@ import PropType from 'prop-types'
 function CommentThreadInput({addComment}) {
     const [comment,setComment] = useState('')
     
-    function onSubmit(){
+    function onSubmit(event){
         event.preventDefault();
         addComment(comment);
         setComment('');

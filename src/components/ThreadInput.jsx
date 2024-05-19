@@ -5,9 +5,9 @@ function ThreadInput({addThread}){
     const [title, setTitle] = useInput('');
     const [category, setCategory] = useInput('');
     const [body, setBody] = useInput('');    
-    function handleSubmit() {
-        addThread({ title, category, body });
-        window.location.reload();
+    function handleSubmit(e) {
+        e.preventDefault();
+        addThread({ title, category, body });       
         
     }
     return(
@@ -18,7 +18,7 @@ function ThreadInput({addThread}){
         <h1 className="modal-title fs-5" id="exampleModalLabel">Add New Threads</h1>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="" >
+      <form onSubmit={handleSubmit}>
       <div className="modal-body">
         <div className="mb-3">
             <label htmlFor="tittle" className="form-label">Tittle</label>
@@ -35,7 +35,7 @@ function ThreadInput({addThread}){
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-dark" onClick={handleSubmit} >Kirim</button>
+        <button type="submit" className="btn btn-dark">Kirim</button>
       </div>
       </form>
     </div>
